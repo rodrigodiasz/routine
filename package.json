@@ -1,0 +1,15 @@
+{
+  "name": "getkcal",
+  "version": "1.0.0",
+  "description": "Estes são os arquivos iniciais do projeto **getkcal** disponível no YouTube.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.3"
+  }
+}
