@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 *,
 html,
@@ -12,7 +12,7 @@ body {
 
 body {
   background: #282828;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: white;
 }
 
@@ -37,18 +37,18 @@ header {
 
 .form-group label {
   font-size: 16px;
-  font-family: 'Montserrat Semibold', sans-serif;
+  font-family: "Montserrat Semibold", sans-serif;
   margin-bottom: 5px;
 }
 
 .form-group input,
 .form-group select {
-  background: #1A1A1A;
+  background: #1a1a1a;
   width: 100%;
   height: 45px;
   border: 1px solid transparent;
   border-radius: 5px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: white;
   font-size: 14px;
   padding: 0 15px;
@@ -58,17 +58,17 @@ header {
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #FF7373;
+  border-color: #ff7373;
 }
 
 .form-group button {
-  background-image: linear-gradient(-90deg, #FF7373 0%, #FDDB33 100%);
+  background-image: linear-gradient(-90deg, #ff7373 0%, #fddb33 100%);
   border-radius: 5px;
   border: 0;
   height: 45px;
-  color: #1A1A1A;
+  color: #1a1a1a;
   font-size: 16px;
-  font-family: 'Montserrat Bold', sans-serif;
+  font-family: "Montserrat Bold", sans-serif;
   cursor: pointer;
 }
 
@@ -82,22 +82,38 @@ header {
 
 .result-content {
   margin-top: 10px;
-  background: #1A1A1A;
+  background: #1a1a1a;
   border-radius: 5px;
   padding: 15px;
 }
 
 .result-content ul {
   list-style: none;
+  margin-bottom: 1rem;
 }
 
 .result-content ul li {
   font-size: 14px;
   font-weight: bold;
-  font-family: 'Montserrat Bold', sans-serif;
+  font-family: "Montserrat Bold", sans-serif;
   line-height: 30px;
 }
 
 .result-content ul li strong {
-  color: #FF7373;
+  color: #ff7373;
+}
+
+.result-content pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
+  overflow-x: auto;
+  font-family: "Montserrat Bold", sans-serif;
+  font-size: 14px;
+}
+
+.routine_title {
+  font-family: "Montserrat Bold", sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
 }
