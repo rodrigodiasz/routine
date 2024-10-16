@@ -5,19 +5,20 @@ form.addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
   event.preventDefault();
 
-  const gender = getSelectedValue('gender');
+  const gender = getSelectedValue("gender");
   const age = getInputNumberValue("age");
   const weight = getInputNumberValue("weight");
   const height = getInputNumberValue("height");
   const activitylevel = getSelectedValue("activity_level");
+  const objective = getSelectedValue("training-objective");
 
   const tmb = Math.round(
-    gender === 'female'
-    ? (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age))
-    : (66 + (13.7 * weight) + (5 * height) - (6.8 * age))
+    gender === "female"
+      ? 655 + 9.6 * weight + 1.8 * height - 4.7 * age
+      : 66 + 13.7 * weight + 5 * height - 6.8 * age
   );
 
-  const maintenance = Math.round(tmb * (activitylevel));
+  const maintenance = Math.round(tmb * activitylevel);
   const loseWeight = maintenance - 450;
   const gainWeight = maintenance + 450;
 
@@ -35,10 +36,13 @@ function handleSubmit(event) {
             <li>
               Para ganhar peso você precisa consumir em média <strong>${gainWeight} calorias</strong>.
             </li>
+            <li>
+              Para ganhar peso você precisa consumir em média <strong>${gainWeight} calorias</strong>.
+            </li>
           </ul>
-  `
+  `;
 
-  const result = document.getElementById('result');
+  const result = document.getElementById("result");
 
   result.innerHTML = layout;
 }
