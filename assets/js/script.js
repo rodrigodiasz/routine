@@ -53,12 +53,12 @@ async function handleSubmit(event) {
         Authorization: `Bearer`,
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o",
         messages: [
           {
             role: "system",
             content:
-              "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade. Quebre uma linha entre os dias.",
+              "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade. Quebre uma linha entre os dias. Devolva também um cronograma de dieta nos mesmo moldes do treino, baseado no objetivo do usuario e seus dados informados.",
           },
           {
             role: "user",
