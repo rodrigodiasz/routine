@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const form = document.getElementById("form");
 
 form.addEventListener("submit", handleSubmit);
@@ -58,7 +56,7 @@ async function handleSubmit(event) {
           {
             role: "system",
             content:
-              "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade. Quebre uma linha entre os dias. Devolva também um cronograma de dieta nos mesmo moldes do treino, baseado no objetivo do usuario e seus dados informados.",
+              "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade. Quebre uma linha entre os dias. Devolva também um cronograma de dieta nos mesmo moldes do treino, baseado no objetivo do usuario e seus dados informados. Adicione tambem a quantidade de agua que o usuario deve beber diariamente.",
           },
           {
             role: "user",
@@ -75,7 +73,7 @@ async function handleSubmit(event) {
   const aiResponseElement = document.createElement("div");
   aiResponseElement.innerHTML = `
     <h3 class='routine_title'>Sua rotina de treinos personalizada:</h3>
-    <pre>${message}</pre>
+    <strong><pre>${message}</pre></strong>
   `;
   result.appendChild(aiResponseElement);
 }
