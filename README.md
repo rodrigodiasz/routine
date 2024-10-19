@@ -1,6 +1,8 @@
-# Getkcal
+# routine
 
-This project is designed to collect user data and calculate their basal metabolic rate (BMR) along with the number of calories they should consume to reach their fitness goals. Additionally, the project integrates an AI-powered API that provides a complete workout plan for the user, including five workouts throughout the week. The workout plan includes options for both strength training and cardio exercises.
+This project is based on the original [GetKcal](https://github.com/maateusilva/getkcal) repository, created by Matheus Silva. The original project focuses on collecting user data to calculate basal metabolic rate (BMR) and recommend a calorie intake to achieve fitness goals.
+
+In this modified version, instead of just providing BMR and calorie recommendations, the project integrates the OpenAI API to deliver a personalized workout plan, diet suggestions, and the daily amount of water the user should drink, based on the provided data.
 
 ## Features
 
