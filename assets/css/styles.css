@@ -58,7 +58,7 @@ header {
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #ff7373;
+  border-color: #5271ff;
 }
 
 .form-group button {
@@ -100,7 +100,7 @@ header {
 }
 
 .result-content ul li strong {
-  color: #ff7373;
+  color: #5271ff;
 }
 
 .result-content pre {
