@@ -5,6 +5,13 @@ form.addEventListener("submit", handleSubmit);
 async function handleSubmit(event) {
   event.preventDefault();
 
+  const result = document.getElementById("result");
+  const loadingElement = document.createElement("div");
+  loadingElement.id = "loading";
+  loadingElement.innerHTML = "<p>Carregando... Por favor, aguarde.</p>";
+  result.innerHTML = "";
+  result.appendChild(loadingElement);
+
   const gender = getSelectedValue("gender");
   const age = getInputNumberValue("age");
   const weight = getInputNumberValue("weight");
@@ -39,43 +46,54 @@ async function handleSubmit(event) {
   </ul>
   `;
 
-  const result = document.getElementById("result");
   result.innerHTML = layout;
+  result.appendChild(loadingElement);
 
-  const apiResponse = await fetch(
-    "https://api.openai.com/v1/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o",
-        messages: [
-          {
-            role: "system",
-            content:
-              "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade, mas seja extremamente especifico com cada treino e os exercicios que seram feitos em cada dia. Quebre uma linha entre os dias. Devolva também um cronograma de dieta nos mesmo moldes do treino, baseado no objetivo do usuario e seus dados informados, quebre uma linha entre cada refeição. Adicione tambem a quantidade de agua que o usuario deve beber diariamente, Formate melhor os textos para que fique mais facil a leitura do  usuario.",
-          },
-          {
-            role: "user",
-            content: `Objetivo: ${objective}, Metabolismo basal: ${tmb}`,
-          },
-        ],
-      }),
-    }
-  );
+  try {
+    const apiResponse = await fetch(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer`,
+        },
+        body: JSON.stringify({
+          model: "gpt-4o",
+          messages: [
+            {
+              role: "system",
+              content:
+                "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade, mas seja extremamente especifico com cada treino e os exercicios que seram feitos em cada dia. Quebre uma linha entre os dias. Devolva também um cronograma de dieta nos mesmo moldes do treino, baseado no objetivo do usuario e seus dados informados, quebre uma linha entre cada refeição. Adicione tambem a quantidade de agua que o usuario deve beber diariamente, Formate melhor os textos para que fique mais facil a leitura do  usuario.",
+            },
+            {
+              role: "user",
+              content: `Objetivo: ${objective}, Metabolismo basal: ${tmb}`,
+            },
+          ],
+        }),
+      }
+    );
 
-  const data = await apiResponse.json();
-  const message = data.choices[0].message.content;
+    const data = await apiResponse.json();
+    const message = data.choices[0].message.content;
 
-  const aiResponseElement = document.createElement("div");
-  aiResponseElement.innerHTML = `
-    <h3 class='routine_title'>Sua rotina de treinos personalizada:</h3>
-    <strong><pre class='chatgpt-response'>${message}</pre></strong>
-  `;
-  result.appendChild(aiResponseElement);
+    loadingElement.remove();
+
+    const aiResponseElement = document.createElement("div");
+    aiResponseElement.innerHTML = `
+      <h3 class='routine_title'>Sua rotina de treinos personalizada:</h3>
+      <strong><pre class='chatgpt-response'>${message}</pre></strong>
+    `;
+    result.appendChild(aiResponseElement);
+  } catch (error) {
+
+    loadingElement.remove();
+    
+    const errorElement = document.createElement("div");
+    errorElement.innerHTML = "<p>Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.</p>";
+    result.appendChild(errorElement);
+  }
 }
 
 function getSelectedValue(id) {
