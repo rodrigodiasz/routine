@@ -90,6 +90,7 @@ header {
 .result-content ul {
   list-style: none;
   margin-bottom: 1rem;
+  padding: 20px;
 }
 
 .result-content ul li {

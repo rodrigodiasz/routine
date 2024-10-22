@@ -29,22 +29,7 @@ async function handleSubmit(event) {
   const loseWeight = maintenance - 450;
   const gainWeight = maintenance + 450;
 
-  const layout = `
-  <ul>
-    <li>
-      Seu metabolismo basal é de <strong>${tmb} calorias</strong>.
-    </li>
-    <li>
-      Para manter o seu peso você precisa consumir em média <strong>${maintenance} calorias</strong>.
-    </li>
-    <li>
-      Para perder peso você precisa consumir em média <strong>${loseWeight} calorias</strong>.
-    </li>
-    <li>
-      Para ganhar peso você precisa consumir em média <strong>${gainWeight} calorias</strong>.
-    </li>
-  </ul>
-  `;
+  const layout = ` `;
 
   result.innerHTML = layout;
   result.appendChild(loadingElement);
@@ -64,11 +49,11 @@ async function handleSubmit(event) {
             {
               role: "system",
               content:
-                "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade, mas seja extremamente especifico com cada treino e os exercicios que seram feitos em cada dia. Quebre uma linha entre os dias. Devolva também um cronograma de dieta nos mesmo moldes do treino, baseado no objetivo do usuario e seus dados informados, quebre uma linha entre cada refeição. Adicione tambem a quantidade de agua que o usuario deve beber diariamente, Formate melhor os textos para que fique mais facil a leitura do  usuario.",
+                "Baseado nos dados do usuário monte uma rotina de treinos, com pelo menos 5 atividades físicas durante a semana, dando a opção de treinos de musculação e aeróbico durante os dias. Siga sempre um padrão nas mensagens, como por exemplo: Segunda-feira: [...], Terça-feira: [...], e assim por diante. Não seja proativo, não adicione nenhum texto adicional, apenas coloque o dia da semana e atividade, mas seja extremamente especifico com cada treino e os exercicios que seram feitos em cada dia. Quebre uma linha entre os dias. Devolva também um cronograma de dieta nos mesmo moldes do treino, baseado no objetivo do usuario e seus dados informados, quebre uma linha entre cada refeição. Adicione tambem a quantidade de agua que o usuario deve beber diariamente, Formate melhor os textos para que fique mais facil a leitura do  usuario. Nunca use markdown ou * quando for dar a resposta, devolva um texto limpo e de facil entendimento do usuario.",
             },
             {
               role: "user",
-              content: `Objetivo: ${objective}, Metabolismo basal: ${tmb}`,
+              content: `Objetivo: ${objective}, Metabolismo basal: ${tmb}, Sexo: ${gender}, Idade: ${age}, Peso: ${weight}, Altura: ${height},  Nível de atividade física: ${activitylevel} `,
             },
           ],
         }),
@@ -84,6 +69,20 @@ async function handleSubmit(event) {
     aiResponseElement.innerHTML = `
       <h3 class='routine_title'>Sua rotina de treinos personalizada:</h3>
       <strong><pre class='chatgpt-response'>${message}</pre></strong>
+        <ul>
+    <li>
+      Seu metabolismo basal é de <strong>${tmb} calorias</strong>.
+    </li>
+    <li>
+      Para manter o seu peso você precisa consumir em média <strong>${maintenance} calorias</strong>.
+    </li>
+    <li>
+      Para perder peso você precisa consumir em média <strong>${loseWeight} calorias</strong>.
+    </li>
+    <li>
+      Para ganhar peso você precisa consumir em média <strong>${gainWeight} calorias</strong>.
+    </li>
+  </ul>
     `;
     result.appendChild(aiResponseElement);
   } catch (error) {
